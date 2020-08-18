@@ -1,0 +1,286 @@
+#+TITLE: Nix Python
+#+SUBTITLE: Fundamentals and Rationale
+#+AUTHOR:    Rohit and Amrita Goswami
+#+EMAIL:     rog32@hi.is
+#+DATE:      \today
+#+BEAMER_HEADER: \titlegraphic[scale=0.6]{images/carpen2020.png}{}
+#+BEAMER_HEADER: \institute{Presented at \textbf{CarpentryCon 2020}}
+#+BEAMER_HEADER: \mail{rog32@hi.is}
+
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+# #+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: toc:nil
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+
+
+#+LATEX_COMPILER: xelatex
+#+LATEX_HEADER: \PassOptionsToPackage{unicode=true}{hyperref}
+#+LATEX_HEADER: \PassOptionsToPackage{hyphens}{url}
+#+LATEX_HEADER: \usepackage{amssymb,amsmath}
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{physics}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:             pdftitle={Nix Python},
+#+LATEX_HEADER:             pdfauthor={Rohit Goswami},
+#+LATEX_HEADER:             pdfborder={0 0 0},
+#+LATEX_HEADER:             breaklinks=true}
+#+LATEX_HEADER: % Make use of float-package and set default placement for figures to H
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \floatplacement{figure}{H}
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setromanfont{EB Garamond}
+#+LATEX_HEADER: \usefonttheme{serif}
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger,unknownkeysallowed,aspectratio=169,colorblocks]
+#+startup: beamer
+#+BEAMER_THEME: Verona
+# % Verona,metropolis are both good
+#+BEAMER_FRAME_LEVEL: 2
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+#+LATEX_HEADER: \usepackage[absolute,overlay]{textpos}
+
+#+LATEX_HEADER: \newcommand*{\XOffsetFromBottomLeft}{32.5em}%
+#+LATEX_HEADER: \newcommand*{\YOffsetFromBottomLeft}{2.7ex}%
+#+LATEX_HEADER: \newcommand*{\BottomLeftText}[1]{%
+#+LATEX_HEADER:     \par%
+    #+LATEX_HEADER: \scriptsize\begin{textblock*}{17.0cm}(\dimexpr\textwidth-\XOffsetFromBottomLeft\relax,\dimexpr\textheight-\YOffsetFromBottomLeft\relax)
+#+LATEX_HEADER:         #1%
+#+LATEX_HEADER:     \end{textblock*}%
+#+LATEX_HEADER: }%
+
+# Nicer Fonts
+# #+LATEX_HEADER: \usepackage{xunicode}
+# #+LATEX_HEADER: \usepackage{xltxtra}
+# #+LATEX_HEADER: \usepackage[protrusion=true,final]{microtype}
+# #+LATEX_HEADER: \usepackage{mathspec}
+# #+LATEX_HEADER: \defaultfontfeatures{Mapping=tex-text}
+# #+LATEX_HEADER: \setromanfont[Ligatures={Common}, Numbers={OldStyle}]{Hoefler Text}
+# #+LATEX_HEADER: \setsansfont[Scale=0.9]{Helvetica Neue}
+# #+LATEX_HEADER: \setmonofont[Scale=0.8]{Courier}
+# #+LATEX_HEADER: \newfontfamily\scfont[Scale=1.2]{Minion Pro}
+
+# #+LATEX_HEADER: \usepackage[default]{sourcesanspro}
+# #+LATEX_HEADER: \usepackage{sourcecodepro}
+
+# Wider Text
+# #+LATEX_HEADER: \usepackage[textwidth=7in,textheight=9in]{geometry}
+# #+LATEX_HEADER: \usepackage[margin=2.5cm,includehead=true,includefoot=true,centering]{geometry}
+
+# References
+#+LATEX_HEADER: \usepackage[natbib]{biblatex}
+#+LATEX_HEADER: \bibliography{../CarpentryCon2020.bib}
+
+* Python Modules
+- A ~.py~ file is a *module*
+- It is *standalone* if it only imports from the standard library
+* Pure Python Packages
+- A directory with ~__init__.py~ in it is a *package*
+- Use ~pip~
+* More Distributions
+- Distributions have zero or more packages
+- Built by ~setuptools~ with ~setup.py~
+- Simple source only ~.tar.gz~
+* The Python Gradient
+From here: https://www.youtube.com/watch?v=iLVNWfPWAC8
+
+#+DOWNLOADED: screenshot @ 2020-05-22 23:00:30
+[[file:images/The_Python_Gradient/2020-05-22_23-00-30_screenshot.png]]
+- Libraries and Dev tools are all we get (from PyPI)
+* Pip Requirements
+- Python
+- System libraries
+- Build tools
+  - Wheels don't work for arbitrary distributions
+* What?
+#+DOWNLOADED: screenshot @ 2020-05-22 23:04:53
+#+ATTR_LATEX: :width 0.5\linewidth
+[[file:images/What?/2020-05-22_23-04-53_screenshot.png]]
+- \tiny from https://brianmckenna.org/files/presentations/rootconf19-nix.pdf
+* Nix
+** A block :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+fullcite:dolstraNixSafePolicyFree2004,dolstraNixOSPurelyFunctional2010
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+CAPTION: User environments (from [[https://nixos.org/nix/manual/#ch-basic-package-mgmt][the manual]])
+#+ATTR_LaTeX: :width 150pt
+#+DOWNLOADED: screenshot @ 2020-05-22 23:15:22
+[[file:images/A_screenshot/2020-05-22_23-15-22_screenshot.png]]
+* Why?
+** A block :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+BEGIN_QUOTE
+Protects against self harm
+#+END_QUOTE
+#+BEGIN_QUOTE
+Exposes things taken for granted
+#+END_QUOTE
+#+BEGIN_QUOTE
+Enforces consistency
+#+END_QUOTE
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+- Reliable :: Purely functional, no broken dependencies
+- Reproducible :: Each package is in isolation
+- How? :: store + hash + name + version
+* Installation (Multi-User)
+#+BEGIN_SRC bash
+sh <(curl https://nixos.org/nix/install) --daemon
+#+END_SRC
+- Needs ~sudo~ but should not be run as root
+- Will make build users with IDs between 30001 and 30032 along with a group ID 30000
+* Nix Python - Trial I
+#+BEGIN_SRC bash
+nix-shell -p 'python38.withPackages(ps: with ps; [ numpy toolz ])'
+#+END_SRC
+
+- Check which ~python~ is loaded
+- Check which modules are present
+* Shell in a File
+** A block :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+#+BEGIN_SRC nix :tangle /home/haozeke/testNix/shell.nix
+with import <nixpkgs> {};
+
+let
+  pythonEnv = python35.withPackages (ps: [
+    ps.numpy
+    ps.toolz
+  ]);
+in mkShell {
+  buildInputs = [
+    pythonEnv
+    which
+  ];
+}
+#+END_SRC
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+- What *tools* are we adding?
+- What *environment* are we using?
+* An Aside into Purity
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+BEGIN_SRC bash
+nix-shell --pure --run 'bash'
+#+END_SRC
+- Why?
+- What do we solve with this?
+
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+DOWNLOADED: screenshot @ 2020-05-22 23:57:17
+#+caption: Stateless builds from https://slides.com/garbas/mozilla-all-hands-london-2016#/7/0/3
+[[file:images/A_screenshot/2020-05-22_23-57-17_screenshot.png]]
+
+* Nix with Scripts
+#+BEGIN_SRC bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i python3 -p "python3.withPackages(ps: [ps.numpy])"
+
+import numpy
+
+print(numpy.__version__)
+#+END_SRC
+* Friendly Nix
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+#+BEGIN_SRC bash
+nix-env -i nox
+nox niv
+#+END_SRC
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+- Niv :: For pinning packages
+- Nox :: Interactive package management
+- [[https://github.com/target/lorri/][Lorri]] :: For automatically reloading environments
+* Existing Projects?
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+- Pip :: pip2nix
+- Poetry :: poetry2nix
+- Anaconda/Miniconda :: Why? -_-
+- Virtualenv :: ...
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+#+DOWNLOADED: screenshot @ 2020-05-22 23:55:07
+#+caption: From https://slides.com/garbas/mozilla-all-hands-london-2016#/8/0/8
+[[file:images/A_screenshot/2020-05-22_23-55-07_screenshot.png]]
+
+* Future Directions!
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+- Read up on the Python Guide
+- Try [[https://nixos.org/nixos/nix-pills/why-you-should-give-it-a-try.html][Nix Pills]]
+- Roll your own environment
+- Make a docker image
+- Try a more [[https://github.com/d-SEAMS/seams-core/blob/691da72262db40625774a2aed05d23c17a211360/nix/pkgs/sharkML/sharkML.nix][complex system]] ([[https://dseams.info][d-SEAMS]] cite:goswamiDSEAMSDeferredStructural2020)
+** A screenshot :BMCOL:B_example:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+DOWNLOADED: screenshot @ 2020-05-22 23:54:29
+[[file:images/A_screenshot/2020-05-22_23-54-29_screenshot.png]]
+
+* References
+:PROPERTIES:
+:BEAMER_opt: allowframebreaks
+:END:
+
+\printbibliography
+
+* End
+:PROPERTIES:
+:BEAMER_opt: standout
+:END:
+#+BEGIN_EXPORT latex
+\begin{center}
+\Huge Thank you
+\end{center}
+#+END_EXPORT
+
+
+# # Local Variables:
+# # after-save-hook: haozeke/org-save-and-export-beamer
+# # End:
