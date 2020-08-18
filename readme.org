@@ -6,7 +6,7 @@ This is a repository of materials used for the workshop entitled "Reproducible E
 *** Slides
 - [[file:slides/nixPython/nixPython.pdf][Slides on Python]] (which are derived from an earlier presentation for CS106A section leaders)
 *** Relevant Posts
-- A tutorial introduction to Nix
+- [[https://rgoswami.me/posts/ccon-tut-nix][A tutorial introduction to Nix]]
 - [[https://rgoswami.me/posts/nix-r-devtools/][Nix with R and devtools]]
 - [[https://rgoswami.me/posts/rethinking-r-nix/][Statistical Rethinking and Nix]]
 * License
