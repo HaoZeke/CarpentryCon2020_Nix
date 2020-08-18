@@ -1,0 +1,17 @@
+* About
+[[http://creativecommons.org/licenses/by-sa/4.0/][[[https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg]]]]
+This is a repository of materials used for the workshop entitled "Reproducible Environments with the Nix Packaging System" at [[https://2020.carpentrycon.org/schedule/#session-10][CarpentryCon 2020]].
+** Materials
+*** Event Facilities
+- The [[https://pad.carpentries.org/cchome-nix-packaging][Etherpad for the event]]
+*** Slides
+- [[file:slides/nixCarpentries.pdf][Slides on Python]] (which are derived from an earlier presentation for CS106A section leaders)
+*** Relevant Posts
+- A tutorial introduction to Nix
+- [[https://rgoswami.me/posts/nix-r-devtools/][Nix with R and devtools]]
+- [[https://rgoswami.me/posts/rethinking-r-nix/][Statistical Rethinking and Nix]]
+* License
+This work is licensed under a [[http://creativecommons.org/licenses/by-sa/4.0/][Creative Commons
+Attribution-ShareAlike 4.0 International License]].
+
+[[http://creativecommons.org/licenses/by-sa/4.0/][[[https://licensebuttons.net/l/by-sa/4.0/88x31.png]]]]
