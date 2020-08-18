@@ -3,6 +3,7 @@ This is a repository of materials used for the workshop entitled "Reproducible E
 ** Materials
 *** Event Facilities
 - The [[https://pad.carpentries.org/cchome-nix-packaging][Etherpad for the event]]
+- The [[https://jamboard.google.com/d/1Oc5COlw2sAkCFXSIopKw3gTUVYmw4ULDyiU2TCmaS1o/edit?usp=sharing][event Jamboard]]
 *** Slides
 - [[file:slides/nixPython/nixPython.pdf][Slides on Python]] (which are derived from an earlier presentation for CS106A section leaders)
 *** Relevant Posts
